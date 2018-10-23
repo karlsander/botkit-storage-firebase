@@ -23,7 +23,7 @@ module.exports = function(config) {
     }
     
     if(config.serviceAccountPath) {
-        config.credential = admin.credential.cert(require(serviceAccountPath));
+        config.credential = admin.credential.cert(require(config.serviceAccountPath));
     }
     
     var app = admin.initializeApp(config),
