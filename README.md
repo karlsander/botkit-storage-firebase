@@ -1,3 +1,5 @@
+A very quick personal fork to use the firebase-admin package instead of the normal firebase and support authenticating with a service account, because leaving the entire thing open read/write is kind of bad. __remember to be careful where I commit the service account json file to because it contains a powerful private key__
+
 # botkit-storage-firebase
 
 A Firebase storage module for Botkit.
