@@ -1,4 +1,4 @@
-var firebase = require('firebase');
+var admin = require('firebase-admin');
 
 /**
  * The Botkit firebase driver
@@ -11,7 +11,7 @@ module.exports = function(config) {
     if (!config) {
         throw new Error('configuration is required.');
     }
-
+    
     // Backwards compatibility shim
     var configuration = {};
     if (config.firebase_uri) {
@@ -21,8 +21,12 @@ module.exports = function(config) {
     } else {
         configuration = config;
     }
-
-    var app = firebase.initializeApp(config),
+    
+    if(config.serviceAccountPath) {
+        config.credential = admin.credential.cert(require(serviceAccountPath));
+    }
+    
+    var app = admin.initializeApp(config),
         database = app.database(),
         rootRef = database.ref(),
         teamsRef = rootRef.child('teams'),
